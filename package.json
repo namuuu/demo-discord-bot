@@ -1,0 +1,25 @@
+{
+  "name": "demo-discord-bot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/namuuu/demo-discord-bot.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/namuuu/demo-discord-bot/issues"
+  },
+  "homepage": "https://github.com/namuuu/demo-discord-bot#readme",
+  "dependencies": {
+    "discord.js": "^14.11.0",
+    "dotenv": "^16.1.1",
+    "mongodb": "^5.5.0"
+  }
+}
