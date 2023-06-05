@@ -2,14 +2,17 @@
 const { Client, GatewayIntentBits } = require('discord.js');
 require('dotenv').config();
 const { setupCommands } = require('./setup/commandSetup.js');
+const { buttons, setupButtons } = require('./setup/buttonsSetup.js');
 
 // Create a new client instance
 const client = new Client({ 
   intents: [GatewayIntentBits.Guilds, 
     GatewayIntentBits.GuildMessages,
-    GatewayIntentBits.MessageContent]});
+    GatewayIntentBits.MessageContent,
+    GatewayIntentBits.GuildMessageReactions,]});
 
 setupCommands(client);
+setupButtons();
 
 // Setup mongo
 Client.client = client;
@@ -38,5 +41,16 @@ client.on('messageCreate', message => {
       }
     }
 });
+
+client.on('interactionCreate', async interaction => {
+  if(interaction.message.author.id != client.user.id) return;
+  if (!interaction.isButton()) return;
+
+  const { customId } = interaction;
+
+  if(buttons.has(customId)) {
+    buttons.get(customId).execute(interaction);
+  }
+})
 
 client.login(process.env.BOT_TOKEN);
